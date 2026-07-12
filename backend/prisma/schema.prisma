@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  ASSET_MANAGER
+  DEPARTMENT_HEAD
+  EMPLOYEE
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+model User {
+  id              String      @id @default(uuid())
+  name            String
+  email           String      @unique
+  password        String
+  role            Role        @default(EMPLOYEE)
+  status          Status      @default(ACTIVE)
+  departmentId    String?
+  department      Department? @relation("DepartmentMembers", fields: [departmentId], references: [id])
+  resetToken      String?
+  resetTokenExpiry DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  headOfDepartments Department[] @relation("DepartmentHead")
+}
+
+model Department {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  status    Status   @default(ACTIVE)
+  headId    String?
+  head      User?    @relation("DepartmentHead", fields: [headId], references: [id])
+  parentId  String?
+  parent    Department?  @relation("DepartmentHierarchy", fields: [parentId], references: [id])
+  children  Department[] @relation("DepartmentHierarchy")
+  members   User[]       @relation("DepartmentMembers")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AssetCategory {
+  id           String   @id @default(uuid())
+  name         String   @unique
+  description  String?
+  customFields Json     @default("[]")
+  status       Status   @default(ACTIVE)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

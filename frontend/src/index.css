@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-600 hover:bg-brand-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-5 rounded-lg border border-gray-300 transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98];
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98];
+  }
+
+  .btn-sm {
+    @apply py-1.5 px-3 text-sm rounded-md;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all duration-200 bg-white placeholder-gray-400;
+  }
+
+  .card {
+    @apply bg-white rounded-xl border border-gray-200 shadow-sm;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .badge-admin {
+    @apply badge bg-purple-100 text-purple-800;
+  }
+
+  .badge-asset-manager {
+    @apply badge bg-blue-100 text-blue-800;
+  }
+
+  .badge-dept-head {
+    @apply badge bg-amber-100 text-amber-800;
+  }
+
+  .badge-employee {
+    @apply badge bg-gray-100 text-gray-700;
+  }
+
+  .badge-active {
+    @apply badge bg-emerald-100 text-emerald-800;
+  }
+
+  .badge-inactive {
+    @apply badge bg-red-100 text-red-800;
+  }
+
+  .tab-btn {
+    @apply px-5 py-2.5 font-medium text-sm rounded-lg transition-all duration-200;
+  }
+
+  .tab-btn-active {
+    @apply tab-btn bg-brand-600 text-white shadow-sm;
+  }
+
+  .tab-btn-inactive {
+    @apply tab-btn text-gray-600 hover:text-gray-900 hover:bg-gray-100;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Modal overlay animation */
+.modal-overlay {
+  animation: fadeIn 0.15s ease-out;
+}
+
+.modal-content {
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
