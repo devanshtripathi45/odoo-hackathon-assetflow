@@ -7,9 +7,12 @@ import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
-import Assets from "./pages/Assets";
+import AssetList from "./pages/Assets/AssetList";
+import AssetDetail from "./pages/Assets/AssetDetail";
+import RegisterAsset from "./pages/Assets/RegisterAsset";
 import Allocation from "./pages/Allocation";
 import Booking from "./pages/Booking";
+import MyBookings from "./pages/MyBookings";
 import OrgSetup from "./pages/OrgSetup/OrgSetup";
 
 export default function App() {
@@ -38,9 +41,12 @@ export default function App() {
       <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/org-setup" element={<ProtectedRoute adminOnly><OrgSetup /></ProtectedRoute>} />
-        <Route path="/assets" element={<Assets />} />
+        <Route path="/assets" element={<AssetList />} />
+        <Route path="/assets/register" element={<ProtectedRoute adminOnly><RegisterAsset /></ProtectedRoute>} />
+        <Route path="/assets/:id" element={<AssetDetail />} />
         <Route path="/allocation" element={<Allocation />} />
         <Route path="/booking" element={<Booking />} />
+        <Route path="/my-bookings" element={<MyBookings />} />
       </Route>
 
       {/* Catch-all redirect */}

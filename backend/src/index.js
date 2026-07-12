@@ -2,11 +2,16 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const authRoutes = require("./routes/auth");
 const departmentRoutes = require("./routes/departments");
 const categoryRoutes = require("./routes/categories");
 const employeeRoutes = require("./routes/employees");
+const assetRoutes = require("./routes/assets");
+const allocationRoutes = require("./routes/allocations");
+const bookingRoutes = require("./routes/bookings");
+const dashboardRoutes = require("./routes/dashboard");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // Health check
 app.get("/api/health", (req, res) => {
@@ -25,6 +31,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/employees", employeeRoutes);
+app.use("/api/assets", assetRoutes);
+app.use("/api/allocations", allocationRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // 404 handler
 app.use((req, res) => {

@@ -7,6 +7,8 @@ import {
   ArrowLeftRight,
   CalendarClock,
   Boxes,
+  Package,
+  CalendarDays,
 } from "lucide-react";
 
 const navItems = [
@@ -15,6 +17,7 @@ const navItems = [
   { to: "/assets", label: "Assets", icon: PackageSearch },
   { to: "/allocation", label: "Allocation", icon: ArrowLeftRight },
   { to: "/booking", label: "Booking", icon: CalendarClock },
+  { to: "/my-bookings", label: "My Bookings", icon: CalendarDays },
 ];
 
 export default function Sidebar() {
